@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions Index!</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheets/index-styles.css' %}">
+</head>
+<body>
+    <h1><i>Welcome to index.</i></h1>
+    {% if list_of_questions %}
+        <ul>
+        {% for question in list_of_questions %}
+            <li>
+                <a href="{% url 'polls:details' question.id %}">
+                    {{ question.text }}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <p>No polls are available.</p>
+    {% endif %}
+</body>
+</html>

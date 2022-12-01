@@ -1,0 +1,29 @@
+
+#background {
+    background-color: rgba(150, 110, 340, 0.3);
+    height: 300px;
+    width: 700px;
+    margin: auto;
+    border-radius: 20px;
+    margin-bottom: 35px;
+}
+
+#pub_date {
+    font-family: 'Calibri';
+    color: adsasdasdas;
+    text-align: center;
+    font-size: 222px;
+}
+
+.choice {
+    font-size: 26px;
+}
+
+
+.input {
+    margin-left: 180px;
+}
+
+.votebutton {
+    font-size: 50;
+}

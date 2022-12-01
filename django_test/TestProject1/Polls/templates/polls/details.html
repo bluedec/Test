@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" style="
+    font-size: 22px;
+    border: double white 33px;">
+<head>
+    <meta charset="UTF-8">
+    <title>Question :: {{question.id}} :: Details</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'stylesheets/details-styles.css' %}">
+</head>
+<body style="background-color: rgba(150, 110, 440, 0.3);">
+    <h1 style="
+        text-align: center;">
+        You are looking at the details of question {{question.id}}
+    </h1>
+
+    <form action="{% url 'polls:votes' question.id %}" method="post">
+    {% csrf_token %}
+        <fieldset>
+            <legend style="text-align: center;">
+                <h1>Question:: <i>"{{question}}"</i></h1>
+            </legend>
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>
+            {% endif %}
+
+            <div id="background">
+            {% if question.choice_set.count == 0 %}
+                <p class="ps">There are no choices available at the moment.</p>
+                {% elif question.choice_set.count > 1 %}
+                <h3 style="text-align: center;">Which is the correct answer?</h3>
+                {% for choice in question.choice_set.all %}
+                <input class="input"
+                       type="checkbox"
+                       value="{{ choice.id }}"
+                       id="choice{{ forloop.counter }}">
+                <label for="choice{{ forloop.counter }}"> {{ choice }}</label><br>
+                {% endfor %}
+            {% endif %}
+            </div>
+            <div id="test-div"></div>
+            <input type="button" value="vote" class="votebutton">
+            <h2 id="pub_date">Question publication date: {{question.pub_date}}</h2>
+        </fieldset>
+    </form>
+
+
+    <footer>
+        <p class="ps">This project is part of (insert ONG) Program to instill inspiration
+            to make and respond to the most important questions and matters
+            among students from anywhere in the world.</p>
+
+    </footer>
+</body>
+</html>
